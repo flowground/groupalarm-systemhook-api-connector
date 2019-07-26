@@ -1,0 +1,146 @@
+{
+    "title": "groupalarm Systemhook API",
+    "description": "The systemhook service implements all systemhook functions for GroupAlarm\n\n# Authentication\n\n<!-- ReDoc-Inject: <security-definitions> -->",
+    "docsUrl": "",
+    "url": "https://app.groupalarm.com/api/v1",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://app.groupalarm.com/api/v1",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "auth_API_Token": {
+                "label": "API-TOKEN (API_Token)",
+                "viewClass": "TextFieldView",
+                "note": "To use this API, you need an API-Token from the RBAC settings of your GroupAlarm organization. Place the token inside the HTTP-Header `API-Token` for every request, otherwise the API will return an \"401 Unauthorized\" error for your request."
+            },
+            "auth_Personal-Access-Token": {
+                "label": "Personal-Access-Token (Personal-Access-Token)",
+                "viewClass": "TextFieldView",
+                "note": "To use this API, you need a Personal Access Token from your profile settings. Place the token inside the HTTP-Header `Personal-Access-Token` for every request, otherwise the API will return an \"401 Unauthorized\" error for your request."
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "CreateSystemhook": {
+            "main": "./lib/actions/CreateSystemhook.js",
+            "title": "CreateSystemhook",
+            "description": "Creates a new system hook",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/CreateSystemhook.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "UpdateSystemhook": {
+            "main": "./lib/actions/UpdateSystemhook.js",
+            "title": "UpdateSystemhook",
+            "description": "Updates the existing system hook with the passed id",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/UpdateSystemhook.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DeleteSystemhook": {
+            "main": "./lib/actions/DeleteSystemhook.js",
+            "title": "DeleteSystemhook",
+            "description": "Deletes the system hook with the passed id",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DeleteSystemhook.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetSystemhooks": {
+            "main": "./lib/actions/GetSystemhooks.js",
+            "title": "GetSystemhooks",
+            "description": "Returns all system hooks for the passed organization id",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetSystemhooks.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetSystemhookServicePayloads": {
+            "main": "./lib/actions/GetSystemhookServicePayloads.js",
+            "title": "GetSystemhookServicePayloads",
+            "description": "Returns all payloads of the usable system hooks",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetSystemhookServicePayloads.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "TestSystemhook": {
+            "main": "./lib/actions/TestSystemhook.js",
+            "title": "TestSystemhook",
+            "description": "Tests a passed systemhook object against the given url with an example payload for the passed service",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/TestSystemhook.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

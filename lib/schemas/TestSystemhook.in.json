@@ -1,0 +1,44 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "type": "object",
+            "required": [
+                "name",
+                "service",
+                "url",
+                "organizationID"
+            ],
+            "properties": {
+                "id": {
+                    "description": "id of the systemhook",
+                    "type": "integer",
+                    "format": "int64",
+                    "x-go-name": "ID"
+                },
+                "name": {
+                    "description": "name of the systemhook",
+                    "type": "string",
+                    "x-go-name": "Name"
+                },
+                "organizationID": {
+                    "description": "id of the containing organization",
+                    "type": "integer",
+                    "format": "int64",
+                    "x-go-name": "OrganizationID"
+                },
+                "service": {
+                    "description": "name of the services for this system hook",
+                    "type": "string",
+                    "x-go-name": "Service"
+                },
+                "url": {
+                    "description": "url of the systemhook",
+                    "type": "string",
+                    "x-go-name": "URL"
+                }
+            },
+            "x-go-package": "groupalarm.com/go/systemhook/api/services"
+        }
+    }
+}
